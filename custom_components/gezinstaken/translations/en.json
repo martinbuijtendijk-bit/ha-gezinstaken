@@ -22,7 +22,7 @@
       }
     },
     "error": {
-      "cannot_connect": "Cannot reach the app at this URL.",
+      "cannot_connect": "Cannot reach the app at this URL. If Home Assistant does not use a DNS server that knows your own domain names, try the app's internal address instead.",
       "invalid_auth": "The API key is invalid or revoked.",
       "invalid_url": "Enter a URL starting with http:// or https://."
     },

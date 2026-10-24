@@ -35,10 +35,11 @@ class GezinstakenConfigFlow(ConfigFlow, domain=DOMAIN):
             if urlparse(url).scheme not in ("http", "https"):
                 errors[CONF_URL] = "invalid_url"
             else:
-                await self.async_set_unique_id(urlparse(url).netloc.lower())
-                self._abort_if_unique_id_configured()
                 errors = await self._validate(url, user_input[CONF_API_KEY].strip())
                 if not errors:
+                    # Pas na een geslaagde controle: een mislukte poging blokkeert zo geen nieuwe poging.
+                    await self.async_set_unique_id(urlparse(url).netloc.lower(), raise_on_progress=False)
+                    self._abort_if_unique_id_configured()
                     return self.async_create_entry(title="Gezinstaken", data={CONF_URL: url, CONF_API_KEY: user_input[CONF_API_KEY].strip()})
         return self.async_show_form(
             step_id="user",

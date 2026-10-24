@@ -99,3 +99,17 @@ async def test_move(hass: HomeAssistant, hass_ws_client) -> None:
     assert (await client.receive_json())["success"]
     assert [i["uid"] for i in await open_items()] == [i["uid"] for i in before]
     assert await hass.config_entries.async_unload(entry.entry_id)
+
+
+async def test_retry_after_failed_attempt(hass: HomeAssistant) -> None:
+    """Een mislukte poging (open venster) mag een nieuwe poging met hetzelfde adres niet blokkeren."""
+    first = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    first = await hass.config_entries.flow.async_configure(first["flow_id"], {"url": URL, "api_key": "gzt_fout"})
+    assert first["errors"] == {"base": "invalid_auth"}
+    second = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    second = await hass.config_entries.flow.async_configure(second["flow_id"], {"url": URL, "api_key": KEY})
+    assert second["type"] == "create_entry"
+    # Hetzelfde adres nog eens: al gekoppeld.
+    third = await hass.config_entries.flow.async_init(DOMAIN, context={"source": "user"})
+    third = await hass.config_entries.flow.async_configure(third["flow_id"], {"url": URL, "api_key": KEY})
+    assert third["type"] == "abort" and third["reason"] == "already_configured"

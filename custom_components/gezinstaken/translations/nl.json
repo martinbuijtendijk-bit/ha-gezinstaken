@@ -22,7 +22,7 @@
       }
     },
     "error": {
-      "cannot_connect": "Kan de app niet bereiken op dit adres.",
+      "cannot_connect": "Kan de app niet bereiken op dit adres. Gebruikt Home Assistant geen DNS-server die je eigen domeinnamen kent? Probeer dan het interne adres van de app, met een IP-adres (bijvoorbeeld http://todo.192.168.1.10.sslip.io).",
       "invalid_auth": "De API-sleutel klopt niet of is ingetrokken.",
       "invalid_url": "Vul een adres in dat begint met http:// of https://."
     },
