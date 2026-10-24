@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Gezinstaken koppelen",
+        "description": "Maak in de app een sleutel aan via Instellingen → Koppelingen. Alleen gedeelde lijsten worden zichtbaar.",
+        "data": {
+          "url": "Adres van de app",
+          "api_key": "API-sleutel"
+        },
+        "data_description": {
+          "url": "Bijvoorbeeld https://todo.example.nl",
+          "api_key": "Begint met gzt_"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Nieuwe API-sleutel",
+        "description": "De sleutel werkt niet meer. Maak in de app een nieuwe aan en vul die hier in.",
+        "data": {
+          "api_key": "API-sleutel"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kan de app niet bereiken op dit adres.",
+      "invalid_auth": "De API-sleutel klopt niet of is ingetrokken.",
+      "invalid_url": "Vul een adres in dat begint met http:// of https://."
+    },
+    "abort": {
+      "already_configured": "Deze app is al gekoppeld.",
+      "reauth_successful": "De nieuwe sleutel is opgeslagen."
+    }
+  }
+}

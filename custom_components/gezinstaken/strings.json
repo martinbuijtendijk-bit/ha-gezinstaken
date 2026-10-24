@@ -1,0 +1,34 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect Gezinstaken",
+        "description": "Create a key in the app under Instellingen → Koppelingen. Only shared lists are exposed.",
+        "data": {
+          "url": "App URL",
+          "api_key": "API key"
+        },
+        "data_description": {
+          "url": "For example https://todo.example.com",
+          "api_key": "Starts with gzt_"
+        }
+      },
+      "reauth_confirm": {
+        "title": "New API key",
+        "description": "The key no longer works. Create a new one in the app and enter it here.",
+        "data": {
+          "api_key": "API key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot reach the app at this URL.",
+      "invalid_auth": "The API key is invalid or revoked.",
+      "invalid_url": "Enter a URL starting with http:// or https://."
+    },
+    "abort": {
+      "already_configured": "This app is already connected.",
+      "reauth_successful": "The new key has been saved."
+    }
+  }
+}
